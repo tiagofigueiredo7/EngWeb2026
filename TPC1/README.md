@@ -1,6 +1,6 @@
 # TCP 1
 ## Metainformação
-- **Título:** Definição de um website a partir de um script python e um dataset
+- **Título:** Definição de um website a partir de um *script* python e um dataset
 - **Data:** 4 fevereiro 2026
 - **Autor:** Tiago Figueiredo
 - **UC:** Engenharia Web
@@ -29,8 +29,24 @@ Definir a estrutura de um website de exploração do dataset:
 
 - Página do tipo de intervenção: dados da intervenção (código, nome e descrição) e lista de reparações onde foi realizada;
 
-- Página do marca/modelo: idem...
+- Página do marca/modelo: número de carros com essa marca/modelo e matriculas com essa marca/modelo
 
-Criar uma ou várias scripts em Python para gerar o website a partir do dataset.
+Criar uma ou várias *scripts* em Python para gerar o website a partir do dataset.
 
 ## Lista de Resultados
+A resolução deste TCPS deu origem aos seguintes ficheios:
+
+- [reparacoes.json](reparacoes.json) : dataset utilizado
+- [json2html.py](json2html.py) : script python para converter o dataset num website
+- [index.html](/output/index.html) : página principal do website com os links para as três listas
+- [reparacoes.html](/output/reparacoes.html) : página com a lista das reparações
+- [intervencoes.html](/output/intervencoes.html) : página com a lista das intervenções
+- [marcas.html](/output/marcas.html) : página com as listas das marcas e dos modelos
+
+**Nota:** Não se encontram neste repositório as páginas individuais de cada reparação, intervenção, marca ou modelo pelo simples motivo do conjunto delas constituir mais de 5000 ficheiros.
+
+Para correr o *script* e ter acesso a todas as páginas pretendidas basta fazer:
+```python
+python3 json2html.py
+```
+
