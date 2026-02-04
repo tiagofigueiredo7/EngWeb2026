@@ -26,16 +26,21 @@ mk_dir("output")
 mk_dir("./output/reparacoes")
 mk_dir("./output/intervencoes")
 mk_dir("./output/marcas")
+mk_dir("./output/modelos")
 
 dataset_reparacoes = open_json("reparacoes.json")
 
 links_reparacoes = ""
 links_intervencoes = ""
 links_marcas = ""
+links_modelos = ""
 
 # dicionário das intervenções
 dic_interv = {}
-
+dic_marcas = {
+    "marcas": [],
+    "modelos": []
+}
 count = 1
 for rep in dataset_reparacoes["reparacoes"]:
     #----------Lista de Reparações----------
@@ -50,7 +55,7 @@ for rep in dataset_reparacoes["reparacoes"]:
     <html>
         <head>
             <title>Reparação-{count}</title>
-            <meta charet="utf-8"/>
+            <meta charset="utf-8"/>
         </head>
         <body>
             <h3>Dados da reparação-{count}:</h3>
@@ -70,6 +75,41 @@ for rep in dataset_reparacoes["reparacoes"]:
     </html>
     '''
     new_file(f"./output/reparacoes/reparacao{count}.html", html_ind_rep)
+    
+    # preencher o dicionário das marcas e modelos
+    marca_atual = (rep["viatura"])["marca"]
+    modelo_atual = (rep["viatura"])["modelo"]
+    matricula_atual = (rep["viatura"])["matricula"]
+    # marcas
+    marca_found = False
+    for m in dic_marcas["marcas"]:
+        if m["marca"] == marca_atual:
+            m["nr_carros"] += 1
+            m["matriculas"].append(matricula_atual)
+            marca_found = True
+            break
+    if not marca_found:
+        new_marca = {
+            "marca": marca_atual,
+            "nr_carros": 1,
+            "matriculas": [matricula_atual]
+        }
+        dic_marcas["marcas"].append(new_marca)
+    # modelos
+    modelo_found = False
+    for m in dic_marcas["modelos"]:
+        if m["modelo"] == modelo_atual:
+            m["nr_carros"] += 1
+            m["matriculas"].append(matricula_atual)
+            modelo_found = True
+            break
+    if not modelo_found:
+        new_modelo = {
+            "modelo": modelo_atual,
+            "nr_carros": 1,
+            "matriculas": [matricula_atual]
+        }
+        dic_marcas["modelos"].append(new_modelo)
     
     # percorrer as intervenções para prencher o dicionário
     for i in rep["intervencoes"]:
@@ -111,7 +151,7 @@ for key in dic_interv:
     <html>
         <head>
             <title>Intervenção-{interv["codigo"]}</title>
-            <meta charet="utf-8"/>
+            <meta charset="utf-8"/>
         </head>
         <body>
             <h3>Dados da intervenção-{interv["codigo"]}:</h3>
@@ -133,13 +173,102 @@ for key in dic_interv:
     </html>
     '''
     new_file(f"./output/intervencoes/intervencao{interv['codigo']}.html", html_ind_interv)
+    
+marcas_ordenadas = sorted(dic_marcas["marcas"], key=lambda m: m["marca"])
+modelos_ordenados = sorted(dic_marcas["modelos"], key=lambda m: m["modelo"])
+
+for marca in marcas_ordenadas:
+    nome_marca = marca["marca"].replace(" ", "_")
+    #----------Lista de Marcas----------
+    links_marcas += f'''
+    <li>
+        <a href="./marcas/{nome_marca}.html">{marca["marca"]}</a>
+    </li>
+    '''
+    
+    #----------Página Individual das Marcas----------
+    matriculas_marcas = ""
+    for mat in marca["matriculas"]:
+        matriculas_marcas += f'''
+        <li>
+            {mat}
+        </li>
+        '''
+    
+    html_ind_marca = f'''
+    <html>
+        <head>
+            <title>{marca["marca"]}</title>
+            <meta charset="utf-8"/>
+        </head>
+        <body>
+            <h3>Dados da {marca["marca"]}:</h3>
+            <ul>
+                <li><strong>Número de carros: </strong>{marca["nr_carros"]}</li>
+                <li><strong>Matriculas de carros com esta marca: </strong>
+                    <ul>
+                        {matriculas_marcas}
+                    </ul>
+                </li>
+            </ul>
+            <hr/>
+            <address>
+                <a href="../marcas.html">Voltar à Página das Marcas</a>
+            </address>
+        </body>
+    </html>
+    '''
+    new_file(f"./output/marcas/{nome_marca}.html", html_ind_marca)
+
+for modelo in modelos_ordenados:
+    nome_modelo = modelo["modelo"].replace(" ", "_")
+    #----------Lista de Modelos----------
+    links_modelos += f'''
+    <li>
+        <a href="./modelos/{nome_modelo}.html">{modelo["modelo"]}</a>
+    </li>
+    '''
+    
+    #----------Página Individual dos Modelos----------
+    matriculas_modelos = ""
+    for mat in modelo["matriculas"]:
+        matriculas_modelos += f'''
+        <li>
+            {mat}
+        </li>
+        '''
+    
+    html_ind_modelo = f'''
+    <html>
+        <head>
+            <title>{modelo["modelo"]}</title>
+            <meta charset="utf-8"/>
+        </head>
+        <body>
+            <h3>Dados da {modelo["modelo"]}:</h3>
+            <ul>
+                <li><strong>Número de carros: </strong>{modelo["nr_carros"]}</li>
+                <li><strong>Matriculas de carros com este modelo: </strong>
+                    <ul>
+                        {matriculas_modelos}
+                    </ul>
+                </li>
+            </ul>
+            <hr/>
+            <address>
+                <a href="../marcas.html">Voltar à Página dos Modelos</a>
+            </address>
+        </body>
+    </html>
+    '''
+    new_file(f"./output/modelos/{nome_modelo}.html", html_ind_modelo)
 
 #----------Página principal----------
 html_principal ='''
 <html>
     <head>
         <title>Intervenções numa oficina automóvel</title>
-        <meta charet="utf-8"/>
+        <meta charset="utf-8"/>
     </head>
     <body>
         <h3>Dados consultáveis:</h3>
@@ -165,7 +294,7 @@ html_reparacoes =f'''
 <html>
     <head>
         <title>Página das Reparações</title>
-        <meta charet="utf-8"/>
+        <meta charset="utf-8"/>
     </head>
     <body>
         <h3>Listagem de Reparações:</h3>
@@ -187,7 +316,7 @@ html_intervencoes =f'''
 <html>
     <head>
         <title>Página das Intervenções</title>
-        <meta charet="utf-8"/>
+        <meta charset="utf-8"/>
     </head>
     <body>
         <h3>Listagem dos tipos de intervenção:</h3>
@@ -209,13 +338,33 @@ html_marcas =f'''
 <html>
     <head>
         <title>Página das Marcas</title>
-        <meta charet="utf-8"/>
+        <meta charset="utf-8"/>
+        <style>
+            td {{
+                vertical-align: top;
+            }}
+        </style>
     </head>
     <body>
         <h3>Listagem das marcas e modelos dos carros intervencionados:</h3>
-        <ul>
-            {links_marcas}
-        </ul>
+        <table border="1">
+            <tr>
+                <th>Marcas</th>
+                <th>Modelos</th>
+            </tr>
+            <tr>
+                <td>
+                    <ul>
+                        {links_marcas}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {links_modelos}
+                    </ul>
+                </td>
+            </tr>
+        </table>
         <hr/>
         <address>
             <a href="index.html">Voltar ao Índice</a>

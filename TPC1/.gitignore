@@ -1,1 +1,4 @@
-*.html
+output/intervencoes/*.html
+output/reparacoes/*.html
+output/marcas/*.html
+output/modelos/*.html
