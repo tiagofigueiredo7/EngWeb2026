@@ -13,9 +13,9 @@
 ![foto](a106856.jpg)
 
 ## Resumo
-Análise do dataset dataset_reparacoes.json sobre as intervenções realizadas numa oficina automóvel;
+Análise do dataset **reparacoes.json** sobre as intervenções realizadas numa oficina automóvel;
 
-Definir a estrutura de um website de exploração do dataset:
+Definição da estrutura de um website de exploração do dataset:
 
 - Página principal: lista de dados consultáveis;
 
@@ -31,17 +31,18 @@ Definir a estrutura de um website de exploração do dataset:
 
 - Página do marca/modelo: número de carros com essa marca/modelo e matriculas com essa marca/modelo
 
-Criar uma ou várias *scripts* em Python para gerar o website a partir do dataset.
+Criação de um *script* em Python para gerar o website a partir do dataset.
 
 ## Lista de Resultados
-A resolução deste TCPS deu origem aos seguintes ficheios:
+A resolução deste TCP deu origem aos seguintes ficheios:
 
 - [reparacoes.json](reparacoes.json) : dataset utilizado
-- [json2html.py](json2html.py) : script python para converter o dataset num website
+- [json2html.py](json2html.py) : *script* python para converter o dataset num website
 - [index.html](/output/index.html) : página principal do website com os links para as três listas
 - [reparacoes.html](/output/reparacoes.html) : página com a lista das reparações
 - [intervencoes.html](/output/intervencoes.html) : página com a lista das intervenções
 - [marcas.html](/output/marcas.html) : página com as listas das marcas e dos modelos
+- páginas individuais de cada reparação, intervenção, marca e modelo
 
 **Nota:** Não se encontram neste repositório as páginas individuais de cada reparação, intervenção, marca ou modelo pelo simples motivo do conjunto delas constituir mais de 5000 ficheiros.
 
