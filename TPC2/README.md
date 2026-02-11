@@ -55,7 +55,7 @@ npm install axios
 
 Para testar basta correr os dois servidores (json-server e server aplicacional) com estes comandos respetivamente:
 
-```
+```bash
 json-server --watch dataset_reparacoes.json
 
 node app_server.js
