@@ -47,7 +47,7 @@ A resolução deste TCP deu origem aos seguintes ficheios:
 **Nota:** Não se encontram neste repositório as páginas individuais de cada reparação, intervenção, marca ou modelo pelo simples motivo do conjunto delas constituir mais de 5000 ficheiros.
 
 Para correr o *script* e ter acesso a todas as páginas pretendidas basta fazer:
-```python
+```bash
 python3 json2html.py
 ```
 
