@@ -164,8 +164,8 @@ var server = http.createServer(function(req, res){
 
     }else{
         //No caso de nenhuma das rotas coincidir com as suportadas
-        res.writeHead(520, {'Content-Type': 'text/plain; charset=utf-8'})
-        res.end("<p>Pedido não suportad, por favor tente novamente.</p>")
+        res.writeHead(520, {'Content-Type': 'text/html; charset=utf-8'})
+        res.end("<p>Pedido não suportado, por favor tente novamente.</p>")
     }
 })
 
