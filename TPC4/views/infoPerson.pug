@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Informação de #{person.nome.primeiro} #{person.nome.último}
+    
+    .w3-container
+      table.w3-table-all.w3-margin-top
+        tr
+          th Nome
+          td= person.nome.primeiro + " " + person.nome.último
+        tr
+          th Idade 
+          td= person.idade
+        tr
+          th Género
+          td= person.género
+        tr
+          th Morada
+          td= person.morada
+        tr  
+          th Modalidade 
+          td= person.modalidade
+        tr
+          th Clube
+          td= person.clube
+        tr 
+          th Email
+          td= person.email
+        tr
+          th Federado
+          td= person.federado ? "Sim" : "Não"
+        tr
+          th Resultado
+          td= person.resultado ? "Aprovado" : "Reprovado"
+
+      a.w3-btn.w3-grey.w3-margin-top(href="/") Voltar
