@@ -7,4 +7,7 @@ function renderPug(fileName, data) {
 
 exports.mainPage = (elist, d) => renderPug('index', { list: elist, date: d });
 exports.idPage = (personInfo, d) => renderPug('infoPerson', { person: personInfo, date: d });
+exports.formPage = (registo, d) => renderPug('form', { e: registo, date: d });
+exports.statsPage = (emds, d) => renderPug('stats', { emds: emds, date: d });
+exports.successPage = (msg, d) => renderPug('success', { message: msg, date: d });
 exports.errorPage = (msg, d) => renderPug('error', { message: msg, date: d });

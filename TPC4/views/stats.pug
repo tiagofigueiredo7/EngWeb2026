@@ -1,0 +1,137 @@
+extends layout 
+
+block content
+  .w3-card-4
+    header.w3-container.w3-teal
+      h1 Estatísticas dos Exames Médicos Desportivos
+      p.w3-small Total de Registos: #{emds.length}
+    
+    .w3-container.w3-padding
+      a.w3-btn.w3-grey.w3-margin-bottom(href="/") Voltar
+      
+      .w3-row-padding.w3-margin-top
+        //- Estatísticas por Género
+        .w3-col.l6.m6.s12
+          .w3-card-4.w3-margin-bottom
+            header.w3-container.w3-blue
+              h3 Distribuição por Género
+            .w3-container.w3-padding
+              table.w3-table.w3-bordered.w3-hoverable
+                tr.w3-light-grey
+                  th Género
+                  th Quantidade
+                  th Percentagem
+                - 
+                  var totalM = emds.filter(e => e.género === 'M').length
+                  var totalF = emds.filter(e => e.género === 'F').length
+                  var percM = ((totalM / emds.length) * 100).toFixed(1)
+                  var percF = ((totalF / emds.length) * 100).toFixed(1)
+                tr
+                  td Masculino
+                  td= totalM
+                  td #{percM}%
+                tr
+                  td Feminino
+                  td= totalF
+                  td #{percF}%
+        
+        //- Estatísticas por Resultado
+        .w3-col.l6.m6.s12
+          .w3-card-4.w3-margin-bottom
+            header.w3-container.w3-green
+              h3 Distribuição por Resultado
+            .w3-container.w3-padding
+              table.w3-table.w3-bordered.w3-hoverable
+                tr.w3-light-grey
+                  th Resultado
+                  th Quantidade
+                  th Percentagem
+                - 
+                  var aprovados = emds.filter(e => e.resultado === true).length
+                  var reprovados = emds.filter(e => e.resultado === false).length
+                  var percAprov = ((aprovados / emds.length) * 100).toFixed(1)
+                  var percReprov = ((reprovados / emds.length) * 100).toFixed(1)
+                tr
+                  td Aprovados
+                  td= aprovados
+                  td #{percAprov}%
+                tr
+                  td Reprovados
+                  td= reprovados
+                  td #{percReprov}%
+      
+      .w3-row-padding
+        //- Estatísticas por Federado
+        .w3-col.l6.m6.s12
+          .w3-card-4.w3-margin-bottom
+            header.w3-container.w3-purple
+              h3 Distribuição por Federação
+            .w3-container.w3-padding
+              table.w3-table.w3-bordered.w3-hoverable
+                tr.w3-light-grey
+                  th Federação
+                  th Quantidade
+                  th Percentagem
+                - 
+                  var federados = emds.filter(e => e.federado === true).length
+                  var naoFederados = emds.filter(e => e.federado === false).length
+                  var percFed = ((federados / emds.length) * 100).toFixed(1)
+                  var percNaoFed = ((naoFederados / emds.length) * 100).toFixed(1)
+                tr
+                  td Federados
+                  td= federados
+                  td #{percFed}%
+                tr
+                  td Não Federados
+                  td= naoFederados
+                  td #{percNaoFed}%
+        
+        //- Top 10 Modalidades
+        .w3-col.l6.m6.s12
+          .w3-card-4.w3-margin-bottom
+            header.w3-container.w3-orange
+              h3 Top 10 Modalidades
+            .w3-container.w3-padding
+              table.w3-table.w3-bordered.w3-hoverable
+                tr.w3-light-grey
+                  th Posição
+                  th Modalidade
+                  th Quantidade
+                - 
+                  var modalidades = {}
+                  emds.forEach(e => {
+                    modalidades[e.modalidade] = (modalidades[e.modalidade] || 0) + 1
+                  })
+                  var modalidadesArray = Object.entries(modalidades).sort((a, b) => b[1] - a[1]).slice(0, 10)
+                each mod, index in modalidadesArray
+                  tr
+                    td= index + 1
+                    td= mod[0]
+                    td= mod[1]
+      
+      .w3-row-padding
+        //- Top 10 Clubes
+        .w3-col.l12
+          .w3-card-4.w3-margin-bottom
+            header.w3-container.w3-red
+              h3 Top 10 Clubes
+            .w3-container.w3-padding
+              table.w3-table.w3-bordered.w3-hoverable
+                tr.w3-light-grey
+                  th Posição
+                  th Clube
+                  th Quantidade
+                  th Percentagem
+                - 
+                  var clubes = {}
+                  emds.forEach(e => {
+                    clubes[e.clube] = (clubes[e.clube] || 0) + 1
+                  })
+                  var clubesArray = Object.entries(clubes).sort((a, b) => b[1] - a[1]).slice(0, 10)
+                each clube, index in clubesArray
+                  - var percClube = ((clube[1] / emds.length) * 100).toFixed(1)
+                  tr
+                    td= index + 1
+                    td= clube[0]
+                    td= clube[1]
+                    td #{percClube}%
