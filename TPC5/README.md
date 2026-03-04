@@ -1,6 +1,6 @@
 # TCP 5
 ## Metainformação
-- **Título:** Web App sobre Cinema utilizando a Express.js
+- **Título:** Web App sobre Cinema utilizando Express.js
 - **Data:** 4 março 2026
 - **Autor:** Tiago Figueiredo
 - **UC:** Engenharia Web
@@ -14,7 +14,7 @@
 
 ## Resumo
 
-Neste TPC o objetivo foi criar uma aplicação web utilizando o Express.js, sobre o tema de cinema. A aplicação atende aos seguintes serviços:
+Neste TPC o objetivo foi criar uma aplicação web utilizando o Express.js sobre o tema de cinema. A aplicação atende aos seguintes serviços:
 
 - `GET /` ou `GET /filmes` - responde com a página principal que apresenta uma lista de filmes
 - `GET /filmes/:id` - responde com uma página com toda a informação sobre o filme com o id fornecido
@@ -29,7 +29,7 @@ A resolução deste TPC deu origem aos seguintes ficheiros:
 
 - [cinema.json](cinema.json) - dataset com a informação sobre os filmes, atores e géneros
 - [script.py](script.py) - script utilizado para converter o dataset para um formato mais adequado
-- [views/](views/) - templates feitos em pug paa criar as páginas da aplicação
+- [views/](views/) - templates feitos em pug para criar as páginas da aplicação
 - [index.js](index.js) - API do serviddor que responde aos serviços
 
 > **Nota:** Os restantes ficheiros foram criados automaticamente com o comando `npx express-generator --view=pug cinemas` e não foram modificados, pelo que não são listados aqui.
