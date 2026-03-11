@@ -25,11 +25,11 @@ Neste TPC o objetivo foi criar uma aplicação web  sobre o tema de cinema, sepa
 
 ## Lista de Resultados
 
-- [cinema.json](cinema.json) - dataset com a informação sobre os filmes, atores e géneros
-- [filmes.json](filmes.json) - dataset com a informação sobre os filmes pronto para usar no mongoDB
-- [atores.json](atores.json) - dataset com a informação sobre os atores pronto para usar no mongoDB
-- [generos.json](generos.json) - dataset com a informação sobre os géneros pronto para usar no mongoDB
-- [script.py](script.py) - script utilizado para converter o dataset em formato JSON para o formato necessário para o mongoDB
+- [cinema.json](./cinemaApp/api_dados/cinema.json) - dataset com a informação sobre os filmes, atores e géneros
+- [filmes.json](./cinemaApp/api_dados/filmes.json) - dataset com a informação sobre os filmes pronto para usar no mongoDB
+- [atores.json](./cinemaApp/api_dados/atores.json) - dataset com a informação sobre os atores pronto para usar no mongoDB
+- [generos.json](./cinemaApp/api_dados/generos.json) - dataset com a informação sobre os géneros pronto para usar no mongoDB
+- [script.py](./cinemaApp/api_dados/script.py) - script utilizado para converter o dataset em formato JSON para o formato necessário para o mongoDB
 - [server_data.js](./cinemaApp/api_dados/server_data.js) - servidor da API de dados
 - [app_interface.js](./cinemaApp/interface/app_interface.js) - servidor da interface
 - [Dockerfile](./cinemaApp/api_dados/Dockerfile) - Dockerfile para o container da API de dados
