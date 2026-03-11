@@ -10,8 +10,6 @@ da Unidade Curricular de Engenharia Web.
 - [TPC4](/TPC4/)
 - [TPC5](/TPC5/)
 - [TPC6](/TPC6/)
-- [TPC7](/TPC7/)
-- [TPC8](/TPC8/)
 
 ## Autor
 **Nome:** [Tiago Silva Figueiredo](https://github.com/tiagofigueiredo7)
